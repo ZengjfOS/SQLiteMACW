@@ -6,3 +6,4 @@ E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.Properties.Resources.res
 E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.csproj.GenerateResource.Cache
 E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.exe
 E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.pdb
+E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.csprojResolveAssemblyReference.cache

@@ -23,8 +23,9 @@ namespace SQLiteMACW
 
         private void button1_Click(object sender, EventArgs e)
         {
-            translateMac();
-            swapMac();
+            //translateMac();
+            //swapMac();
+            countBetweenMac("10:00:00:00:00:00", "10:00:00:00:00:11");
         }
 
         void translateMac()
@@ -86,6 +87,31 @@ namespace SQLiteMACW
 
             Console.WriteLine( "calculate next Mac : %02x:%02x:%02x:%02x:%02x:%02x", macByte0, macByte1, macByte2, macByte3, macByte4, macByte5 );
         }
+        /** 输出两个MAC区间内的所有MAC地址 */
+        public static void countBetweenMac(String macStart, String macEnd){  
+            long start = turnMacToLong(macStart);  
+            long end = turnMacToLong(macEnd);  
+            String prefix = macStart.Substring(0,9);  
+            String hex = null;  
+            String suffix = null;  
+            StringBuilder sb = null;  
+            for(long i=start; i< end +1; i++){  
+                hex = String.Format("{0:X12}", i);  
+                suffix = hex.Substring(hex.Length-6);  
+                sb = new StringBuilder(suffix);  
+                sb.Insert(2, ":");  
+                sb.Insert(5, ":");  
+                Console.WriteLine(prefix + sb.ToString());  
+            }  
+        }
+        /** 将MAC转换成数字 */
+        public static long turnMacToLong(String MAC)
+        {
+            String hex = MAC.Replace(":", "");
+            Console.WriteLine(hex);
+            long longMac = long.Parse(hex, System.Globalization.NumberStyles.HexNumber);
+            return longMac;
+        } 
 
     }
 }
