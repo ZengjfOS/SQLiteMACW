@@ -1,0 +1,8 @@
+E:\vsproject\SQLiteMACW\SQLiteMACW\bin\Debug\SQLiteMACW.exe.config
+E:\vsproject\SQLiteMACW\SQLiteMACW\bin\Debug\SQLiteMACW.exe
+E:\vsproject\SQLiteMACW\SQLiteMACW\bin\Debug\SQLiteMACW.pdb
+E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.Form1.resources
+E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.Properties.Resources.resources
+E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.csproj.GenerateResource.Cache
+E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.exe
+E:\vsproject\SQLiteMACW\SQLiteMACW\obj\Debug\SQLiteMACW.pdb
