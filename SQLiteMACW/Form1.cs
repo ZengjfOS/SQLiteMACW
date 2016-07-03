@@ -29,8 +29,8 @@ namespace SQLiteMACW
             // MACSQLite.deleteMac("macs", "00:11:22:33:44:55");
             // MACSQLite.updateMac("macs", 18, "11:22:33:44:55:66");
 
-            MACSQLite.winCmd("dir");
-            MACSQLite.winCmd("ipconfig");
+            WinCmd.cmd("dir");
+            WinCmd.cmd("ipconfig");
         } 
     }
 }
