@@ -43,7 +43,7 @@
             this.addMAC.TabIndex = 0;
             this.addMAC.Text = "Add MAC";
             this.addMAC.UseVisualStyleBackColor = true;
-            this.addMAC.Click += new System.EventHandler(this.button1_Click);
+            this.addMAC.Click += new System.EventHandler(this.addMACClick);
             // 
             // macB
             // 
@@ -92,7 +92,7 @@
             this.Controls.Add(this.macB);
             this.Controls.Add(this.addMAC);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "SQLiteMACW";
             this.ResumeLayout(false);
             this.PerformLayout();
 
