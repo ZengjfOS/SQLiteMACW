@@ -31,7 +31,7 @@ namespace SQLiteMACW
             }
         }
 
-        public static void pictureBoxOut(String mac, PictureBox pictureBox)
+        public static Bitmap bitmapOut(String mac)
         {
             QrEncoder encoder = new QrEncoder(ErrorCorrectionLevel.L);
             QrCode qrCode;
@@ -44,7 +44,26 @@ namespace SQLiteMACW
             MemoryStream ms = new MemoryStream();
             gRenderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, ms);
 
-            pictureBox.Image = new Bitmap(ms);
+            return new Bitmap(ms);
+        }
+
+        public static Bitmap bitmapOut(String mac, PictureBox pictureBox)
+        {
+            QrEncoder encoder = new QrEncoder(ErrorCorrectionLevel.L);
+            QrCode qrCode;
+            encoder.TryEncode(mac, out qrCode);
+
+            GraphicsRenderer gRenderer = new GraphicsRenderer(
+                new FixedModuleSize(7, QuietZoneModules.Two),
+                Brushes.Black, Brushes.White);
+
+            MemoryStream ms = new MemoryStream();
+            gRenderer.WriteToStream(qrCode.Matrix, ImageFormat.Png, ms);
+
+            Bitmap bitmap = new Bitmap(ms);
+            pictureBox.Image = bitmap;
+
+            return bitmap;
         }
     }
 }

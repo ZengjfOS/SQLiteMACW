@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.macE = new System.Windows.Forms.TextBox();
             this.qrcode = new System.Windows.Forms.PictureBox();
+            this.print = new System.Windows.Forms.Button();
+            this.printer = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.qrcode)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,11 +93,26 @@
             this.qrcode.TabIndex = 5;
             this.qrcode.TabStop = false;
             // 
+            // print
+            // 
+            this.print.Location = new System.Drawing.Point(200, 138);
+            this.print.Name = "print";
+            this.print.Size = new System.Drawing.Size(75, 49);
+            this.print.TabIndex = 6;
+            this.print.Text = "Print";
+            this.print.UseVisualStyleBackColor = true;
+            this.print.Click += new System.EventHandler(this.printClick);
+            // 
+            // printer
+            // 
+            this.printer.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printerPrintPage);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(289, 280);
+            this.Controls.Add(this.print);
             this.Controls.Add(this.qrcode);
             this.Controls.Add(this.macE);
             this.Controls.Add(this.label2);
@@ -118,6 +135,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox macE;
         private System.Windows.Forms.PictureBox qrcode;
+        private System.Windows.Forms.Button print;
+        private System.Drawing.Printing.PrintDocument printer;
     }
 }
 
