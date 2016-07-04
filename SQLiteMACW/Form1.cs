@@ -31,6 +31,10 @@ namespace SQLiteMACW
 
             WinCmd.cmd("dir");
             WinCmd.cmd("ipconfig");
+
+            MACQRCode.consoleOut("00:11:22;33:44:55");
+            // MACQRCode.pictureBoxOut("00:11:22;33:44:55", qrcode);
+            MACQRCode.pictureBoxOut("www.aplexos.com", qrcode);
         } 
     }
 }

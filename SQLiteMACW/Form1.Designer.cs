@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.macE = new System.Windows.Forms.TextBox();
+            this.qrcode = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.qrcode)).BeginInit();
             this.SuspendLayout();
             // 
             // addMAC
@@ -81,11 +83,20 @@
             this.macE.Text = "00:00:00:00:00:00";
             this.macE.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // qrcode
+            // 
+            this.qrcode.Location = new System.Drawing.Point(14, 77);
+            this.qrcode.Name = "qrcode";
+            this.qrcode.Size = new System.Drawing.Size(180, 191);
+            this.qrcode.TabIndex = 5;
+            this.qrcode.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 96);
+            this.ClientSize = new System.Drawing.Size(289, 280);
+            this.Controls.Add(this.qrcode);
             this.Controls.Add(this.macE);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -93,6 +104,7 @@
             this.Controls.Add(this.addMAC);
             this.Name = "Form1";
             this.Text = "SQLiteMACW";
+            ((System.ComponentModel.ISupportInitialize)(this.qrcode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,6 +117,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox macE;
+        private System.Windows.Forms.PictureBox qrcode;
     }
 }
 
