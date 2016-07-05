@@ -1,0 +1,14 @@
+D:\vsProject\SQLiteMACW\SQLiteMACW\bin\Release\SQLiteMACW.exe.config
+D:\vsProject\SQLiteMACW\SQLiteMACW\bin\Release\SQLiteMACW.exe
+D:\vsProject\SQLiteMACW\SQLiteMACW\bin\Release\SQLiteMACW.pdb
+D:\vsProject\SQLiteMACW\SQLiteMACW\bin\Release\Gma.QrCodeNet.Encoding.dll
+D:\vsProject\SQLiteMACW\SQLiteMACW\bin\Release\System.Data.SQLite.dll
+D:\vsProject\SQLiteMACW\SQLiteMACW\bin\Release\Gma.QrCodeNet.Encoding.pdb
+D:\vsProject\SQLiteMACW\SQLiteMACW\bin\Release\Gma.QrCodeNet.Encoding.xml
+D:\vsProject\SQLiteMACW\SQLiteMACW\bin\Release\System.Data.SQLite.pdb
+D:\vsProject\SQLiteMACW\SQLiteMACW\obj\Release\SQLiteMACW.Properties.Resources.resources
+D:\vsProject\SQLiteMACW\SQLiteMACW\obj\Release\SQLiteMACW.csproj.GenerateResource.Cache
+D:\vsProject\SQLiteMACW\SQLiteMACW\obj\Release\SQLiteMACW.exe
+D:\vsProject\SQLiteMACW\SQLiteMACW\obj\Release\SQLiteMACW.pdb
+D:\vsProject\SQLiteMACW\SQLiteMACW\obj\Release\SQLiteMACW.mainForm.resources
+D:\vsProject\SQLiteMACW\SQLiteMACW\obj\Release\SQLiteMACW.csprojResolveAssemblyReference.cache

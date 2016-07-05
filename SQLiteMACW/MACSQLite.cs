@@ -16,6 +16,7 @@ namespace SQLiteMACW
         static private long macEL;
         static long length;
         static List<String> macsList = new List<string>();
+        public static List<DBIdMAC> macsDB = new List<DBIdMAC>();
 
         private static void swapMac(){
             long temp = 0;
@@ -87,7 +88,7 @@ namespace SQLiteMACW
         {
             SQLiteConnection conn = getConnect(name);
 
-            String sql = "CREATE TABLE IF NOT EXISTS macs(id integer PRIMARY KEY autoincrement, mac varchar(20));";
+            String sql = "CREATE TABLE IF NOT EXISTS " + name + "(id integer PRIMARY KEY autoincrement, mac varchar(20));";
             SQLiteCommand cmdCreateTable = new SQLiteCommand(sql, conn);
             cmdCreateTable.ExecuteNonQuery();       
 
@@ -101,6 +102,35 @@ namespace SQLiteMACW
             String sql = "INSERT INTO macs (mac) VALUES ('" + mac + "')";
 
             executeSql(conn, sql);
+        }
+
+        public static void insertMac(String name, List<string> macs)
+        {
+
+            SQLiteConnection conn = getConnect(name);
+            SQLiteTransaction trans =  conn.BeginTransaction();
+            try
+            {
+                SQLiteCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "INSERT INTO macs (mac) VALUES(?)";
+                SQLiteParameter macPara = cmd.CreateParameter();
+                cmd.Parameters.Add(macPara);
+                for (int i = 0; i < MACSQLite.length; i++)
+                {
+                    macPara.Value = macs[i];
+                    cmd.ExecuteNonQuery();
+                }
+                trans.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+                trans.Rollback();
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public static void addMacs(String name)
@@ -147,6 +177,44 @@ namespace SQLiteMACW
                 Console.WriteLine(id + ", " + mac);
             }
             conn.Close();
+        }
+
+        public static void queryMacs(String name)
+        {
+            SQLiteConnection conn = getConnect(name);
+
+            string sql = "select id, mac from macs";
+            SQLiteCommand cmdQ = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = cmdQ.ExecuteReader();
+
+            macsDB.Clear();
+
+            while (reader.Read())
+            {
+                int id = reader.GetInt32(0);
+                String mac = reader.GetString(1);
+                macsDB.Add(new DBIdMAC(id, mac));
+            }
+            conn.Close();
+        }
+
+        public static int queryCount(String name)
+        {
+            SQLiteConnection conn = getConnect(name);
+
+            string sql = "select count(*) from macs";
+            SQLiteCommand cmdQ = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = cmdQ.ExecuteReader();
+
+
+            int count = 0;
+            while (reader.Read())
+            {
+                count = reader.GetInt32(0);
+            }
+            conn.Close();
+
+            return count;
         }
 
         public static void deleteMac(String name, String mac)
