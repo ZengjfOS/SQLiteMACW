@@ -39,26 +39,31 @@
             this.adbCmd = new System.Windows.Forms.Button();
             this.adbcmdShow = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.backMAC = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.status = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.qrcode = new System.Windows.Forms.PictureBox();
             this.macLV = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.currentMAC = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.touchType = new System.Windows.Forms.ComboBox();
+            this.displayType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.mac = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label7 = new System.Windows.Forms.Label();
+            this.serialNo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qrcode)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // addMAC
@@ -109,7 +114,7 @@
             // 
             // print
             // 
-            this.print.Location = new System.Drawing.Point(69, 205);
+            this.print.Location = new System.Drawing.Point(69, 208);
             this.print.Name = "print";
             this.print.Size = new System.Drawing.Size(75, 25);
             this.print.TabIndex = 6;
@@ -123,9 +128,9 @@
             // 
             // adbCmd
             // 
-            this.adbCmd.Location = new System.Drawing.Point(453, 166);
+            this.adbCmd.Location = new System.Drawing.Point(344, 167);
             this.adbCmd.Name = "adbCmd";
-            this.adbCmd.Size = new System.Drawing.Size(70, 26);
+            this.adbCmd.Size = new System.Drawing.Size(70, 24);
             this.adbCmd.TabIndex = 7;
             this.adbCmd.Text = "ADB Write";
             this.adbCmd.UseVisualStyleBackColor = true;
@@ -149,14 +154,14 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Check Read Back MAC: ";
             // 
-            // label4
+            // backMAC
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(212, 173);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 12);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "00:00:00:00:00:00";
+            this.backMAC.AutoSize = true;
+            this.backMAC.Location = new System.Drawing.Point(212, 173);
+            this.backMAC.Name = "backMAC";
+            this.backMAC.Size = new System.Drawing.Size(107, 12);
+            this.backMAC.TabIndex = 10;
+            this.backMAC.Text = "00:00:00:00:00:00";
             // 
             // groupBox1
             // 
@@ -174,17 +179,37 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.status);
             this.groupBox2.Controls.Add(this.adbcmdShow);
             this.groupBox2.Controls.Add(this.adbCmd);
-            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.backMAC);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(12, 318);
+            this.groupBox2.Location = new System.Drawing.Point(12, 369);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(592, 197);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ADB To EEPROM";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(498, 167);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Clean";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.cleanAdbCmdShowClick);
+            // 
+            // status
+            // 
+            this.status.AutoSize = true;
+            this.status.Location = new System.Drawing.Point(433, 173);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(47, 12);
+            this.status.TabIndex = 11;
+            this.status.Text = "Success";
             // 
             // groupBox3
             // 
@@ -201,7 +226,7 @@
             // 
             this.qrcode.Image = global::SQLiteMACW.Properties.Resources.aplexosQRCode;
             this.qrcode.InitialImage = null;
-            this.qrcode.Location = new System.Drawing.Point(14, 16);
+            this.qrcode.Location = new System.Drawing.Point(14, 22);
             this.qrcode.Name = "qrcode";
             this.qrcode.Size = new System.Drawing.Size(175, 176);
             this.qrcode.TabIndex = 5;
@@ -209,52 +234,31 @@
             // 
             // macLV
             // 
-            this.macLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.mac});
             this.macLV.GridLines = true;
-            this.macLV.Location = new System.Drawing.Point(4, 17);
+            this.macLV.Location = new System.Drawing.Point(4, 22);
             this.macLV.Name = "macLV";
             this.macLV.Size = new System.Drawing.Size(378, 175);
             this.macLV.TabIndex = 14;
             this.macLV.UseCompatibleStateImageBehavior = false;
             this.macLV.View = System.Windows.Forms.View.Details;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(51, 214);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Query";
-            this.button1.UseVisualStyleBackColor = true;
+            this.macLV.SelectedIndexChanged += new System.EventHandler(this.macLV_SelectedIndexChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(164, 214);
+            this.button2.Location = new System.Drawing.Point(255, 209);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 16;
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(277, 214);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Delete All";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.deleteDB);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.currentMAC);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.macLV);
-            this.groupBox4.Controls.Add(this.button3);
             this.groupBox4.Controls.Add(this.button2);
-            this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(386, 242);
@@ -262,49 +266,95 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Database";
             // 
+            // currentMAC
+            // 
+            this.currentMAC.AutoSize = true;
+            this.currentMAC.Location = new System.Drawing.Point(125, 215);
+            this.currentMAC.Name = "currentMAC";
+            this.currentMAC.Size = new System.Drawing.Size(107, 12);
+            this.currentMAC.TabIndex = 19;
+            this.currentMAC.Text = "00:00:00:00:00:00";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(101, 197);
+            this.label5.Location = new System.Drawing.Point(49, 215);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 12);
             this.label5.TabIndex = 18;
             this.label5.Text = "Current MAC: ";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.serialNo);
+            this.groupBox5.Controls.Add(this.label7);
+            this.groupBox5.Controls.Add(this.label6);
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Controls.Add(this.displayType);
+            this.groupBox5.Controls.Add(this.touchType);
+            this.groupBox5.Location = new System.Drawing.Point(12, 315);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(590, 48);
+            this.groupBox5.TabIndex = 14;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Select Argument";
+            // 
+            // touchType
+            // 
+            this.touchType.FormattingEnabled = true;
+            this.touchType.Location = new System.Drawing.Point(65, 18);
+            this.touchType.Name = "touchType";
+            this.touchType.Size = new System.Drawing.Size(49, 20);
+            this.touchType.TabIndex = 0;
+            // 
+            // displayType
+            // 
+            this.displayType.FormattingEnabled = true;
+            this.displayType.Location = new System.Drawing.Point(190, 18);
+            this.displayType.Name = "displayType";
+            this.displayType.Size = new System.Drawing.Size(69, 20);
+            this.displayType.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 12);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Touch: ";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(177, 197);
+            this.label6.Location = new System.Drawing.Point(131, 21);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(107, 12);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "00:00:00:00:00:00";
-            // 
-            // id
-            // 
-            this.id.Text = "ID";
-            this.id.Width = 25;
-            // 
-            // mac
-            // 
-            this.mac.Text = "MAC";
-            this.mac.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.mac.Width = 349;
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Display:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(532, 173);
+            this.label7.Location = new System.Drawing.Point(280, 21);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 12);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Success";
+            this.label7.Size = new System.Drawing.Size(71, 12);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Serial No.:";
+            // 
+            // serialNo
+            // 
+            this.serialNo.Location = new System.Drawing.Point(352, 18);
+            this.serialNo.Name = "serialNo";
+            this.serialNo.Size = new System.Drawing.Size(62, 21);
+            this.serialNo.TabIndex = 2;
             // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 534);
+            this.ClientSize = new System.Drawing.Size(615, 573);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -323,6 +373,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.qrcode)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -340,19 +392,23 @@
         private System.Windows.Forms.Button adbCmd;
         private System.Windows.Forms.TextBox adbcmdShow;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label backMAC;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ListView macLV;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label currentMAC;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ColumnHeader id;
-        private System.Windows.Forms.ColumnHeader mac;
+        private System.Windows.Forms.Label status;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox displayType;
+        private System.Windows.Forms.ComboBox touchType;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox serialNo;
         private System.Windows.Forms.Label label7;
     }
 }

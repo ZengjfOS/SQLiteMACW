@@ -10,7 +10,7 @@ namespace SQLiteMACW
 {
     class WinCmd
     {
-        public static void cmd(String cmd) 
+        public static String cmd(String cmd) 
         {
             Process process = new Process();
             process.StartInfo.FileName = "cmd.exe";
@@ -31,10 +31,11 @@ namespace SQLiteMACW
             process.WaitForExit();                              //等待程序执行完退出进程
             process.Close();
 
-            Console.WriteLine(output);
+            // Console.WriteLine(output);
+            return output;
         }
 
-        public static void cmd(String cmd, TextBox textBox) 
+        public static String cmd(String cmd, TextBox textBox) 
         {
             Process process = new Process();
             process.StartInfo.FileName = "cmd.exe";
@@ -56,6 +57,8 @@ namespace SQLiteMACW
             process.Close();
 
             textBox.AppendText(output);
+
+            return output;
         }
     }
 }

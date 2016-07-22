@@ -53,7 +53,7 @@ namespace SQLiteMACW
             }  
         }
 
-        public static void printMacS()
+        public static void printMacs()
         {
             if (length == 0)
             {
@@ -219,9 +219,10 @@ namespace SQLiteMACW
 
         public static void deleteMac(String name, String mac)
         {
+
             SQLiteConnection conn = getConnect(name);
 
-            string sql = "delete from macs where mac = '" + mac +"'";
+            string sql = "delete from macs where mac = '" + mac + "'";
 
             executeSql(conn, sql);
         }
@@ -233,6 +234,23 @@ namespace SQLiteMACW
             string sql = "update macs set mac = '" + mac + "' where id = " + id;
 
             executeSql(conn, sql);
+        }
+
+        public static String fetchHeadMac(String name)
+        {
+            SQLiteConnection conn = getConnect(name);
+
+            string sql = "select * from macs LIMIT 0,1";
+            SQLiteCommand cmdQ = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = cmdQ.ExecuteReader();
+
+            String mac = null;
+            while (reader.Read())
+                mac = reader.GetString(1);
+
+            conn.Close();
+
+            return mac;
         }
     }
 }

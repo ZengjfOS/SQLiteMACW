@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bin2File.cs" />
     <Compile Include="DBIdMAC.cs" />
+    <Compile Include="Eeprom.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
