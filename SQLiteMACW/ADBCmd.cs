@@ -14,7 +14,7 @@ namespace SQLiteMACW
         {
             String backString = WinCmd.cmd("adb devices -l");
 
-            string s = @"sabresd_6dq";
+            string s = @"sabresd";
             Regex r = new Regex(s, RegexOptions.IgnoreCase);
             Match mB = r.Match(backString);
             if (!mB.Success)
