@@ -52,12 +52,12 @@
             this.currentMAC = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.touchType = new System.Windows.Forms.ComboBox();
-            this.displayType = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.serialNo = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.displayType = new System.Windows.Forms.ComboBox();
+            this.touchType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -299,39 +299,12 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Select Argument";
             // 
-            // touchType
+            // serialNo
             // 
-            this.touchType.FormattingEnabled = true;
-            this.touchType.Location = new System.Drawing.Point(65, 18);
-            this.touchType.Name = "touchType";
-            this.touchType.Size = new System.Drawing.Size(49, 20);
-            this.touchType.TabIndex = 0;
-            // 
-            // displayType
-            // 
-            this.displayType.FormattingEnabled = true;
-            this.displayType.Location = new System.Drawing.Point(190, 18);
-            this.displayType.Name = "displayType";
-            this.displayType.Size = new System.Drawing.Size(69, 20);
-            this.displayType.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 12);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Touch: ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(131, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 12);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Display:";
+            this.serialNo.Location = new System.Drawing.Point(352, 18);
+            this.serialNo.Name = "serialNo";
+            this.serialNo.Size = new System.Drawing.Size(62, 21);
+            this.serialNo.TabIndex = 2;
             // 
             // label7
             // 
@@ -342,12 +315,39 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "Serial No.:";
             // 
-            // serialNo
+            // label6
             // 
-            this.serialNo.Location = new System.Drawing.Point(352, 18);
-            this.serialNo.Name = "serialNo";
-            this.serialNo.Size = new System.Drawing.Size(62, 21);
-            this.serialNo.TabIndex = 2;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(131, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Display:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 12);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Touch: ";
+            // 
+            // displayType
+            // 
+            this.displayType.FormattingEnabled = true;
+            this.displayType.Location = new System.Drawing.Point(190, 18);
+            this.displayType.Name = "displayType";
+            this.displayType.Size = new System.Drawing.Size(69, 20);
+            this.displayType.TabIndex = 0;
+            // 
+            // touchType
+            // 
+            this.touchType.FormattingEnabled = true;
+            this.touchType.Location = new System.Drawing.Point(65, 18);
+            this.touchType.Name = "touchType";
+            this.touchType.Size = new System.Drawing.Size(49, 20);
+            this.touchType.TabIndex = 0;
             // 
             // mainForm
             // 

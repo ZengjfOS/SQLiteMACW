@@ -74,7 +74,6 @@ namespace SQLiteMACW
                     ds.data[i] = fileData[index++];
 
                 fileDataList.Add(ds);
-                // ds.toString();
             }
         }
 

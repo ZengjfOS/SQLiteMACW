@@ -120,7 +120,6 @@ namespace SQLiteMACW
                 macLV.Items[0].Selected = true;
                 macLV.Select();
             }
-            // initCurrentMACLable();
         }
 
         private void addMACClick(object sender, EventArgs e)
@@ -137,24 +136,15 @@ namespace SQLiteMACW
             }
 
             MACSQLite.generateMacs(macB.Text, macE.Text);
-            // MACSQLite.printMacs();
 
             MACSQLite.createTable("macs");
             MACSQLite.addMacs("macs");
-
-            // MACSQLite.insertMac("macs", "00:11:22:33:44:55");
-            // MACSQLite.queryMac("macs");
-            // MACSQLite.deleteMac("macs", "00:11:22:33:44:55");
-            // MACSQLite.updateMac("macs", 18, "11:22:33:44:55:66");
 
             refreshListView();
         }
 
         private void printClick(object sender, EventArgs e)
         {
-            // MACQRCode.consoleOut("00:11:22;33:44:55");
-            // qrBitmap = MACQRCode.bitmapOut("www.aplexos.com", qrcode);
-
             if (qrBitmap == null)
             {
                 return;
@@ -176,9 +166,6 @@ namespace SQLiteMACW
 
         private void adbCmdClick(object sender, EventArgs e)
         {
-            // WinCmd.cmd("dir");
-            // WinCmd.cmd("ipconfig");
-
             EepromDataBinFile();
 
             if (!ADBCmd.detectDevice())
