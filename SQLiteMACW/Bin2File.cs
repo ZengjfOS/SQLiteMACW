@@ -31,7 +31,7 @@ namespace SQLiteMACW
 
         public static byte[] readByteArray(String path)
         {
-            FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite);
+            FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
             byte[] data = new byte[fs.Length];
             fs.Read(data, 0, (int)fs.Length);       // 目前文件不会很大，所以int的长度已经够：了

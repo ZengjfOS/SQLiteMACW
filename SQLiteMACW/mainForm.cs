@@ -181,18 +181,30 @@ namespace SQLiteMACW
 
             EepromDataBinFile();
 
-            WinCmd.cmd("adb push eeprom.bin /data/local", adbcmdShow);
-            WinCmd.cmd("adb shell mount -o remount /dev/block/mtdblock2 /system", adbcmdShow);
-            WinCmd.cmd("adb shell dd if=/data/local/eeprom.bin of=/sys/bus/i2c/devices/3-0050/eeprom", adbcmdShow);
+            // WinCmd.cmd("adb push eeprom.bin /data/local", adbcmdShow);
+            // WinCmd.cmd("adb shell mount -o remount /dev/block/mtdblock2 /system", adbcmdShow);
+            // WinCmd.cmd("adb shell dd if=/data/local/eeprom.bin of=/sys/bus/i2c/devices/3-0050/eeprom", adbcmdShow);
+            if (!ADBCmd.detectDevice())
+                return;
+
+            ADBCmd.push("eeprom.bin", "/data/local", adbcmdShow);
+            ADBCmd.execute("mount -o remount /dev/block/mtdblock2 /system", adbcmdShow);
+            ADBCmd.execute("dd if=/data/local/eeprom.bin of=/sys/bus/i2c/devices/3-0050/eeprom", adbcmdShow);
 
             // 确认数据是否正确写入到EEPROM中
-            WinCmd.cmd("adb shell dd if=/sys/bus/i2c/devices/3-0050/eeprom of=/data/local/eeprom_bak.bin", adbcmdShow);
-            WinCmd.cmd("adb shell pull /data/local/eeprom_bak.bin .", adbcmdShow);
+            // WinCmd.cmd("adb shell dd if=/sys/bus/i2c/devices/3-0050/eeprom of=/data/local/eeprom_bak.bin", adbcmdShow);
+            // WinCmd.cmd("adb pull /data/local/eeprom_bak.bin .", adbcmdShow);
+
+            ADBCmd.execute("dd if=/sys/bus/i2c/devices/3-0050/eeprom of=/data/local/eeprom_bak.bin", adbcmdShow);
+            ADBCmd.pull("/data/local/eeprom_bak.bin", ".", adbcmdShow);
             if (Eeprom.readDataWithCompare("eeprom_bak.bin"))
+            // if (Eeprom.readDataWithCompare("eeprom.bin"))
             {
                 MessageBox.Show("Success.");
 
-                // backMAC.Text = m.Value;
+                Eeprom.parseFileData();
+                backMAC.Text = Eeprom.getMac();
+
                 status.Text = "Success.";
                 status.BackColor = Color.Green;
 

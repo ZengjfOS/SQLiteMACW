@@ -15,7 +15,9 @@ namespace SQLiteMACW
 
         private const int length = 256;
         public static byte[] data = new byte[length];
+        private static byte[] fileData;
         private static List<DataStruct> dataList = new List<DataStruct>();
+        private static List<DataStruct> fileDataList = new List<DataStruct>();
 
         public static void cleanDataList()
         {
@@ -38,8 +40,9 @@ namespace SQLiteMACW
 
         public static bool readDataWithCompare(String path)
         {
-            byte[] fileData = Bin2File.readByteArray(path);
-            for (int i = 0; i < fileData.Length; i++)
+            fileData = Bin2File.readByteArray(path);
+            int i = 0;
+            for (; i < fileData.Length; i++)
             {
                 if (i > (length -1))
                     break;
@@ -48,8 +51,43 @@ namespace SQLiteMACW
                     return false;
             }
 
-            return true;
+            if (i == data.Length)
+                return true;
+            else
+                return false;
             // Bin2File.printByteArray(data);
+        }
+
+        public static void parseFileData()
+        {
+            int index = 0;
+            while (true)
+            {
+                if (fileData[index] == 0)
+                    break;
+
+                DataStruct ds = new DataStruct();
+                ds.type = fileData[index++];
+                ds.length = (short)(fileData[index++] | (fileData[index++] << 8));
+                ds.data = new byte[ds.length];
+                for (int i = 0; i < ds.length; i++)
+                    ds.data[i] = fileData[index++];
+
+                fileDataList.Add(ds);
+                // ds.toString();
+            }
+        }
+
+        public static String getMac()
+        {
+            foreach (DataStruct ds in fileDataList)
+            {
+                if (ds.type == DataStruct.macIdType)
+                {
+                    return String.Format("{0:X02}:{1:X02}:{2:X02}:{3:X02}:{4:X02}:{5:X02}", ds.data[0], ds.data[1], ds.data[2], ds.data[3], ds.data[4], ds.data[5]);
+                }
+            }
+            return "";
         }
 
         public static void setMac(String mac){
@@ -58,8 +96,8 @@ namespace SQLiteMACW
             DataStruct data = new DataStruct();
 
             data.type = DataStruct.macIdType;
-            data.lenght = 0x06;
-            data.data = new byte[data.lenght];
+            data.length = 0x06;
+            data.data = new byte[data.length];
 
             for (int i = 0; i < 6; i++)
                 data.data[i] = (byte)((macL >> ((5 - i) * 8)) & 0xff);
@@ -72,8 +110,8 @@ namespace SQLiteMACW
             DataStruct data = new DataStruct();
 
             data.type = DataStruct.serialNumberType;
-            data.lenght = 0x02;
-            data.data = new byte[data.lenght];
+            data.length = 0x02;
+            data.data = new byte[data.length];
 
             for (int i = 0; i < 2; i++)
                 data.data[i] = (byte)((serialNumber >> (i * 8)) & 0xff);
@@ -86,10 +124,10 @@ namespace SQLiteMACW
             DataStruct data = new DataStruct();
 
             data.type = DataStruct.displayType;
-            data.lenght = 0x01;
-            data.data = new byte[data.lenght];
+            data.length = 0x01;
+            data.data = new byte[data.length];
 
-            data.data[data.lenght - 1] = display;
+            data.data[data.length - 1] = display;
 
             dataList.Add(data);
         }
@@ -99,10 +137,10 @@ namespace SQLiteMACW
             DataStruct data = new DataStruct();
 
             data.type = DataStruct.touchType;
-            data.lenght = 0x01;
-            data.data = new byte[data.lenght];
+            data.length = 0x01;
+            data.data = new byte[data.length];
 
-            data.data[data.lenght - 1] = touch;
+            data.data[data.length - 1] = touch;
 
             dataList.Add(data);
         }
@@ -116,10 +154,10 @@ namespace SQLiteMACW
             foreach (DataStruct ds in dataList)
             {
                 data[index++] = ds.type;
-                data[index++] = (byte)(ds.lenght & 0xff);
-                data[index++] = (byte)((ds.lenght >> 8) & 0xff);
+                data[index++] = (byte)(ds.length & 0xff);
+                data[index++] = (byte)((ds.length >> 8) & 0xff);
 
-                for (int i = 0; i < ds.lenght; i++)
+                for (int i = 0; i < ds.length; i++)
                     data[index++] = ds.data[i];
             }
         }
@@ -133,7 +171,17 @@ namespace SQLiteMACW
         public const byte serialNumberType = 0x02;
 
         public byte type;
-        public short lenght;
+        public short length;
         public byte[] data;
+
+        public void toString()
+        {
+            Console.Write("DataStruct: {{ type = 0x{0:X02}, length = 0x{1:X02}, data = {{ ", type, length);
+            int i = 0;
+            for (; i < (length - 1); i++)
+                Console.Write("0x{0:X02}, ", data[i]);
+
+            Console.WriteLine("0x{0:X02} }}}}", data[i]);
+        }
     }
 }
